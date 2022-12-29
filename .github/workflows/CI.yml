@@ -51,7 +51,7 @@ jobs:
       run: nuget restore $env:SolutionPath -Verbosity quiet
     - name: Build code
       if: needs.pre_job.outputs.should_skip != 'true'
-      run: msbuild $env:SolutionPath /t:Rebuild -v:m
+      run: msbuild $env:SolutionPath /t:Rebuild -v:m /p:Version=${{env.AutoVersion_AssemblySemVer}}
     - name: Run tests
       if: needs.pre_job.outputs.should_skip != 'true'
       run: dotnet test --no-build --verbosity minimal $env:SolutionPath

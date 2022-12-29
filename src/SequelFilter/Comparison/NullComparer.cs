@@ -8,21 +8,21 @@ namespace SequelFilter.Comparison
 
         public static NullComparer Instance => _instance.Value;
 
-        public bool Equals(object left, object right, string operatorName)
+        public bool Equals(object? left, object? right, string operatorName)
         {
             var leftIsNull = left == null;
             var rightIsNull = right == null;
             return leftIsNull == rightIsNull;
         }
 
-        public bool GreaterThan(object left, object right, string operatorName)
+        public bool GreaterThan(object? left, object? right, string operatorName)
         {
             var leftIsNull = left == null;
             var rightIsNull = right == null;
             return !leftIsNull && rightIsNull;
         }
 
-        public bool GreaterThanEqualTo(object left, object right, string operatorName)
+        public bool GreaterThanEqualTo(object? left, object? right, string operatorName)
         {
             var leftIsNull = left == null;
             return !leftIsNull;
