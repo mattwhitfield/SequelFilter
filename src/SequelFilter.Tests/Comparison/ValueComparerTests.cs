@@ -30,10 +30,19 @@ namespace SequelFilter.Tests.Comparison
             result.Should().Be(expectedResult);
         }
 
+        [Fact]
+        public static void CannotCallEqualsWithInvalidDesignTimeOperands()
+        {
+            // Arrange
+            var operatorName = "TestValue202056200";
+
+            // Act
+            FluentActions.Invoking(() => ValueComparer.Equals(1, Guid.Empty, operatorName)).Should().Throw<InvalidOperationException>();
+        }
+
         [Theory]
-        [InlineData(1, 1.0)]
         [InlineData(1, "fred")]
-        public static void CannotCallEqualsWithInvalidOperands(object left, object right)
+        public static void CannotCallEqualsWithInvalidRuntimeOperands(object left, object right)
         {
             // Arrange
             var operatorName = "TestValue202056200";

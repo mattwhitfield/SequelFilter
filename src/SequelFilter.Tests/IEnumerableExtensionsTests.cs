@@ -15,6 +15,7 @@ namespace SequelFilter.Tests
         public static IEnumerable<object[]> GetTestCases()
         {
             // Comparisons & Binary operators
+            yield return TestCase($"Population < 100000000.0", Country.UK, Country.France);
             yield return TestCase($"Population < 100000000", Country.UK, Country.France);
             yield return TestCase($"Population < 100000000 && CountryName != '{Country.UK.CountryName}'", Country.France);
             yield return TestCase($"Population <= 100000000 || CountryName != '{Country.UK.CountryName}'", Country.France, Country.UK, Country.US);

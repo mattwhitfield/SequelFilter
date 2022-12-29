@@ -14,8 +14,8 @@ namespace SequelFilter.NodeTransforms
             switch (treeNode.Term.Name)
             {
                 case SequelFilterGrammar.NumberLiteral:
-                    long l = (long)treeNode.Token.Value;
-                    return _ => l;
+                    object o = treeNode.Token.Value;
+                    return _ => o;
 
                 case SequelFilterGrammar.StringLiteral:
                     return _ => treeNode.Token.ValueString;

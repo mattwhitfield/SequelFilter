@@ -68,7 +68,7 @@
             NonGrammarTerminals.Add(new CommentTerminal(Comment, SQLStyleCommentStart, LineFeed, CarriageReturnLineFeed));
 
             // literals
-            var numberLiteral = new NumberLiteral(NumberLiteral) { DefaultIntTypes = new[] { TypeCode.Int64 } };
+            var numberLiteral = new NumberLiteral(NumberLiteral) { DefaultIntTypes = new[] { TypeCode.Int64 }, DefaultFloatType = TypeCode.Double };
             var stringLiteral = new StringLiteral(StringLiteral, SingleQuote, StringOptions.AllowsDoubledQuote);
             var fieldReferenceElement = TerminalFactory.CreateSqlExtIdentifier(this, "fieldReferenceElement");
 
