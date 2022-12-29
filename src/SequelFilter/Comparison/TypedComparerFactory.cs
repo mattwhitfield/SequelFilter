@@ -56,6 +56,11 @@ namespace SequelFilter.Comparison
                     // parse left as rightComparisonType
                     return TypedComparerCache.CreateFor(rightComparisonType);
                 }
+                else if ((leftComparisonType == typeof(decimal) && rightComparisonType == typeof(long)) ||
+                         (leftComparisonType == typeof(long) && rightComparisonType == typeof(decimal)))
+                {
+                    return TypedComparerCache.CreateFor(typeof(decimal));
+                }
             }
 
             throw new InvalidOperationException($"Could not find a comparer for types '{leftType.Name}' and '{rightType.Name}' for operator '{operatorName}'.");
