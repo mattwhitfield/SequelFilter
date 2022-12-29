@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SequelFilter
 {
-    public static class SequelFilterFactory
+    internal static class SequelFilterFactory
     {
         private static readonly Dictionary<string, IParseTreeTransform> _transforms = new Dictionary<string, IParseTreeTransform>(StringComparer.OrdinalIgnoreCase);
 
@@ -29,12 +29,7 @@ namespace SequelFilter
 
         public static ExecutableExpression GetExecutableExpression(ParseTreeNode treeNode)
         {
-            if (_transforms.TryGetValue(treeNode.Term.Name, out var transform))
-            {
-                return transform.Transform(treeNode);
-            }
-
-            throw new ParseException($"Could not find a transform for the node type {treeNode.Term.Name}");
+            return _transforms[treeNode.Term.Name].Transform(treeNode);
         }
     }
 }

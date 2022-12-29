@@ -1,7 +1,5 @@
 namespace SequelFilter.Tests.Resolvers
 {
-    using System;
-    using System.Collections.Generic;
     using FluentAssertions;
     using SequelFilter.Resolvers;
     using Xunit;
