@@ -1,0 +1,92 @@
+name: Extension build
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  
+jobs:
+  pre_job:
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    outputs:
+      should_skip: ${{ steps.skip_check.outputs.should_skip }}
+    steps:
+      - id: skip_check
+        uses: fkirc/skip-duplicate-actions@v5
+        with:
+          skip_after_successful_duplicate: 'false'
+          paths_ignore: '["*.md", "docs/**"]'
+          
+  build:
+    needs: pre_job
+    runs-on: windows-latest
+    env: 
+        Configuration: Release
+        SolutionPath: src\SequelFilter.sln
+    steps:
+    - uses: actions/checkout@v3  
+      if: needs.pre_job.outputs.should_skip != 'true'
+      with:
+        fetch-depth: '0'
+    - name: Setup .NET Core
+      if: needs.pre_job.outputs.should_skip != 'true'
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '3.1.x'
+    - name: Derive version
+      if: needs.pre_job.outputs.should_skip != 'true'
+      run: |
+        ./.github/workflows/AutoVersion.ps1
+      shell: pwsh 
+    - name: Setup MSBuild.exe
+      if: needs.pre_job.outputs.should_skip != 'true'
+      uses: microsoft/setup-msbuild@v1.1
+    - name: Restore NuGet Packages
+      if: needs.pre_job.outputs.should_skip != 'true'
+      run: nuget restore $env:SolutionPath -Verbosity quiet
+    - name: Build code
+      if: needs.pre_job.outputs.should_skip != 'true'
+      run: msbuild $env:SolutionPath /t:Rebuild -v:m
+    - name: Run tests
+      if: needs.pre_job.outputs.should_skip != 'true'
+      run: dotnet test --no-build --verbosity minimal $env:SolutionPath
+    - name: Collect artifacts
+      if: needs.pre_job.outputs.should_skip != 'true'
+      uses: actions/upload-artifact@v3
+      with:
+        name: NugetPackage
+        path: src/SequelFilter/bin/Release/*.nupkg
+        
+  release-nuget-package:
+    if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main') && needs.pre_job.outputs.should_skip != 'true'
+    needs: [build, pre_job]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3  
+      with:
+        fetch-depth: '0'
+    - run: |
+        ./.github/workflows/AutoVersion.ps1
+      shell: pwsh 
+    - uses: actions/download-artifact@master
+      with:
+        name: NugetPackage
+        path: dist/
+    - name: Create Github Release
+      id: create_release
+      uses: softprops/action-gh-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{env.AutoVersion_SemVer}}
+        name: ${{env.AutoVersion_SemVer}}
+        body: 'SequelFilter v${{env.AutoVersion_SemVer}}'
+        draft: false
+        prerelease: false
+        files: |
+          dist/*.nupkg

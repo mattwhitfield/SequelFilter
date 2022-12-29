@@ -4,6 +4,12 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>SequelFilter</Title>
+    <Authors>MattWhitfield</Authors>
+    <Description>SequelFilter is a C# library allowing objects to be filtered using a SQL like query language</Description>
+    <PackageProjectUrl>https://github.com/mattwhitfield/SequelFilter</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/mattwhitfield/SequelFilter</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
