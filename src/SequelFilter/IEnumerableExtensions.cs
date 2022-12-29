@@ -7,8 +7,12 @@ namespace SequelFilter
     {
         public static IEnumerable<T> Where<T>(this IEnumerable<T> source, string filterExpression)
         {
-            var parseTree = SequelFilterParser.Parse(filterExpression);
-            var filter = SequelFilterFactory.GetExecutableExpression(parseTree);
+            var filter = SequelFilterParser.Parse(filterExpression);
+            return source.Where(filter);
+        }
+
+        public static IEnumerable<T> Where<T>(this IEnumerable<T> source, ExecutableExpression filter)
+        {
             foreach (var item in source)
             {
                 if (item != null && filter(new SingleObjectResolver(item)))

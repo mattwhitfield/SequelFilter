@@ -8,7 +8,7 @@
     {
         private static Lazy<LanguageData> _languageDataCacheInstance = new Lazy<LanguageData>(() => new LanguageData(new SequelFilterGrammar()));
 
-        public static ParseTreeNode Parse(string inputText)
+        public static ExecutableExpression Parse(string inputText)
         {
             if (string.IsNullOrWhiteSpace(inputText))
             {
@@ -21,7 +21,7 @@
                 throw new ParseException(tree.ParserMessages.Select(x => x.ToErrorMessage()).Aggregate((x, y) => x + Environment.NewLine + y));
             }
 
-            return tree.Root;
+            return SequelFilterFactory.GetExecutableExpression(tree.Root);
         }
     }
 }

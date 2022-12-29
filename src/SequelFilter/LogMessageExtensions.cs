@@ -1,6 +1,5 @@
 ﻿namespace SequelFilter
 {
-    using System.Globalization;
     using Irony;
 
     public static class LogMessageExtensions
