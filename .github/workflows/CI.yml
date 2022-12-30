@@ -71,7 +71,7 @@ jobs:
       with:
         fetch-depth: '0'
     - name: Setup NuGet
-      uses: NuGet/setup-nuget@v1.0.5
+      uses: NuGet/setup-nuget@v1.1.1
     - run: |
         ./.github/workflows/AutoVersion.ps1
       shell: pwsh 
