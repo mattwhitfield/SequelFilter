@@ -12,6 +12,7 @@
     <RepositoryUrl>https://github.com/mattwhitfield/SequelFilter</RepositoryUrl>
     <PackageIcon>nuget_logo.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression> MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
