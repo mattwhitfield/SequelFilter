@@ -7,9 +7,15 @@ Let's start with an example. Considering this simple object:
 ```
 public class World
 {
-    public IEnumerable<Country> Countries => new[] { Country.US, Country.UK, Country.France };
+    public IEnumerable<Country> Countries => new[]
+    { 
+        Country.US,
+        Country.UK,
+        Country.France
+    };
 
-    public RandomStatistics Statistics { get; } = new RandomStatistics();
+    public RandomStatistics Statistics { get; }
+        = new RandomStatistics();
 }
 
 public class RandomStatistics
