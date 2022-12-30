@@ -11,7 +11,7 @@
     <PackageProjectUrl>https://github.com/mattwhitfield/SequelFilter</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mattwhitfield/SequelFilter</RepositoryUrl>
     <PackageIcon>nuget_logo.png</PackageIcon>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReadmeFile>README-nuget.md</PackageReadmeFile>
     <PackageLicenseExpression> MIT</PackageLicenseExpression>
   </PropertyGroup>
 
@@ -20,7 +20,7 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-    <None Include="..\..\README.md">
+    <None Include="..\..\README-nuget.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
