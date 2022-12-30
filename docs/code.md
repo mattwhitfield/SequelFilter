@@ -13,7 +13,7 @@ var matches = ObjectFilter.Matches(
 If you want to apply the same filter to multiple objects, it is more efficient to first compile the expression and then apply it:
 
 ```
-var filter = SequelFilterParse.Parse(
+var filter = SequelFilterParser.Parse(
     "Property > 5 AND OtherProperty == 'fred'");
 var matches = filter.Matches(someObject);
 ```
@@ -25,6 +25,22 @@ var filteredResults = myEnumerable
     .Where("Property > 5 AND OtherProperty == 'fred'")
     .ToList();
 ```
+
+## Object resolution 🔍
+
+When you compile a filter, you receive a delegate of type `ExecutableExpression` which is defined as:
+
+```
+delegate bool ExecutableExpression(IFieldReferenceResolver fieldReferenceResolver);
+```
+
+Effectively, `IFieldReferenceResolver` is used to resolve dotted field references. So if during executing the filter needs to get the value for a dotted reference, a call will be made to the `Resolve` member of `IFieldReferenceResolver`.
+
+There are a couple of built in `IFieldReferenceResolver` types. For the examples below we will consider the dotted field reference `first.second`:
+
+* SingleObjectResolver - for when you want to filter against a single instance. `first` would be resolved as a property of that instance, and `second` would be resolved as a property of whatever object was returned by `first`.
+* MultiObjectResolver - for when you want a set of instances that represent the top-level named objects. `first` would be used to look up an object that was passed in to the constructor of `MutliObjectResolver` and `second` would be resolved as a property of that object.
+* ExtendedResolver - this is mostly for internal use, and allows you to introduce an extra named top-level object. This facilitates the `x => x.Property` style syntax of the enumerable language elements, such that each element of the enumerable can be resolved as `x` (or whatever identifier you choose) in the expression to the right of the 'goes into'.
 
 ## Exceptions 🤔
 
