@@ -10,7 +10,20 @@
     <Description>SequelFilter is a C# library allowing objects to be filtered using a SQL like query language</Description>
     <PackageProjectUrl>https://github.com/mattwhitfield/SequelFilter</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mattwhitfield/SequelFilter</RepositoryUrl>
+    <PackageIcon>nuget_logo.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\docs\assets\nuget_logo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Irony" Version="1.1.0" />

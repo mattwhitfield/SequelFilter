@@ -70,6 +70,8 @@ jobs:
     - uses: actions/checkout@v3  
       with:
         fetch-depth: '0'
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.0.5
     - run: |
         ./.github/workflows/AutoVersion.ps1
       shell: pwsh 
@@ -90,3 +92,5 @@ jobs:
         prerelease: false
         files: |
           dist/*.nupkg
+    - name: Publish to NuGet
+      run: nuget push dist\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}}          
