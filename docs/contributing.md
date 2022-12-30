@@ -15,4 +15,12 @@ I am really excited to see what you come up with to take this project forward - 
 
 ## Solution Layout 🗃
 
-** info coming **
+The solution is fairly simple, consisting of just the library and it's tests.
+
+In the main project, the Irony based grammary and main entry points are in the root folder.
+
+The 'Comparison' folder contains the code that facilitates loosely-typed value comparisons.
+
+The 'NodeTransforms' folder contains the code responsible for converting parsed syntax trees into executable delegates.
+
+The 'Resolvers' folder contains the various resolvers that allow field references to be resolved from input object.

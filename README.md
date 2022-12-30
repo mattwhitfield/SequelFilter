@@ -12,9 +12,9 @@ Sequel Filter is a C# library that allows for filtering using a SQL-like syntax.
 ## Grammar Features ✍
 
 * Basic comparisons with support for loose type matching
-* Combinational logic with AND / OR
-* Support for IN, LIKE, BETWEEN, IS NULL SQL operators
-* Support for searching child enumerables with HAS_NONE, HAS_ANY, HAS_SINGLE
+* Combinational logic with `AND` / `OR`
+* Support for `IN`, `LIKE`, `BETWEEN` and `IS NULL` SQL operators
+* Support for searching child enumerables with `HAS_NONE`, `HAS_ANY`, `HAS_SINGLE`
 
 # Documentation 📖
 
