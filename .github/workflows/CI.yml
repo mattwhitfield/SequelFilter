@@ -75,7 +75,7 @@ jobs:
     - run: |
         ./.github/workflows/AutoVersion.ps1
       shell: pwsh 
-    - uses: actions/download-artifact@master
+    - uses: actions/download-artifact@v3
       with:
         name: NugetPackage
         path: dist/
