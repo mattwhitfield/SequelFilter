@@ -15,22 +15,44 @@ namespace SequelFilter.Tests
         public static IEnumerable<object[]> GetTestCases()
         {
             // Comparisons & Binary operators
-            yield return TestCase($"Population < 100000000.0", Country.UK, Country.France);
-            yield return TestCase($"Population < 100000000", Country.UK, Country.France);
-            yield return TestCase($"Population < 100000000 && CountryName != '{Country.UK.CountryName}'", Country.France);
-            yield return TestCase($"Population <= 100000000 || CountryName != '{Country.UK.CountryName}'", Country.France, Country.UK, Country.US);
-            yield return TestCase($"Population > 100000000 && CountryName != '{Country.UK.CountryName}'", Country.US);
-            yield return TestCase($"Population >= 100000000 && CountryName != '{Country.US.CountryName}'");
-            yield return TestCase($"Population == {Country.UK.Population}", Country.UK);
-            yield return TestCase($"Population != {Country.UK.Population}", Country.US, Country.France);
+            yield return TestCase($"Population.Int < 100000000.0", Country.UK, Country.France);
+            yield return TestCase($"Population.Int < 100000000", Country.UK, Country.France);
+            yield return TestCase($"Population.Int < 100000000 && CountryName != '{Country.UK.CountryName}'", Country.France);
+            yield return TestCase($"Population.Int <= 100000000 || CountryName != '{Country.UK.CountryName}'", Country.France, Country.UK, Country.US);
+            yield return TestCase($"Population.Int > 100000000 && CountryName != '{Country.UK.CountryName}'", Country.US);
+            yield return TestCase($"Population.Int >= 100000000 && CountryName != '{Country.US.CountryName}'");
+            yield return TestCase($"Population.Double < 100000000.0", Country.UK, Country.France);
+            yield return TestCase($"Population.Double < 100000000", Country.UK, Country.France);
+            yield return TestCase($"Population.Double < 100000000 && CountryName != '{Country.UK.CountryName}'", Country.France);
+            yield return TestCase($"Population.Double <= 100000000 || CountryName != '{Country.UK.CountryName}'", Country.France, Country.UK, Country.US);
+            yield return TestCase($"Population.Double > 100000000 && CountryName != '{Country.UK.CountryName}'", Country.US);
+            yield return TestCase($"Population.Double >= 100000000 && CountryName != '{Country.US.CountryName}'");
+            yield return TestCase($"Population.Decimal < 100000000.0", Country.UK, Country.France);
+            yield return TestCase($"Population.Decimal < 100000000", Country.UK, Country.France);
+            yield return TestCase($"Population.Decimal < 100000000 && CountryName != '{Country.UK.CountryName}'", Country.France);
+            yield return TestCase($"Population.Decimal <= 100000000 || CountryName != '{Country.UK.CountryName}'", Country.France, Country.UK, Country.US);
+            yield return TestCase($"Population.Decimal > 100000000 && CountryName != '{Country.UK.CountryName}'", Country.US);
+            yield return TestCase($"Population.Decimal >= 100000000 && CountryName != '{Country.US.CountryName}'");
+            yield return TestCase($"Population.String < 100000000.0", Country.UK, Country.France);
+            yield return TestCase($"Population.String < 100000000", Country.UK, Country.France);
+            yield return TestCase($"Population.String < 100000000 && CountryName != '{Country.UK.CountryName}'", Country.France);
+            yield return TestCase($"Population.String <= 100000000 || CountryName != '{Country.UK.CountryName}'", Country.France, Country.UK, Country.US);
+            yield return TestCase($"Population.String > 100000000 && CountryName != '{Country.UK.CountryName}'", Country.US);
+            yield return TestCase($"Population.String >= 100000000 && CountryName != '{Country.US.CountryName}'");
+            yield return TestCase($"Population.Int == {Country.UK.Population.Int}", Country.UK);
+            yield return TestCase($"Population.Int != {Country.UK.Population.Int}", Country.US, Country.France);
 
             // BETWEEN
-            yield return TestCase($"Population BETWEEN {Country.France.Population - 1} AND {Country.France.Population + 1}", Country.France);
-            yield return TestCase($"Population BETWEEN {Country.France.Population + 1} AND {Country.France.Population - 1}", Country.France);
-            yield return TestCase($"Population NOT BETWEEN {Country.France.Population - 1} AND {Country.France.Population + 1}", Country.UK, Country.US);
-            yield return TestCase($"Population NOT BETWEEN {Country.France.Population + 1} AND {Country.France.Population - 1}", Country.UK, Country.US);
+            yield return TestCase($"Population.Int BETWEEN {Country.France.Population.Int - 1} AND {Country.France.Population.Int + 1}", Country.France);
+            yield return TestCase($"Population.Int BETWEEN {Country.France.Population.Int + 1} AND {Country.France.Population.Int - 1}", Country.France);
+            yield return TestCase($"Population.Int NOT BETWEEN {Country.France.Population.Int - 1} AND {Country.France.Population.Int + 1}", Country.UK, Country.US);
+            yield return TestCase($"Population.Int NOT BETWEEN {Country.France.Population.Int + 1} AND {Country.France.Population.Int - 1}", Country.UK, Country.US);
 
             // Enumerable Expression
+            yield return TestCase($"Subdivisions HAS_ANY x => x.RandomDecimal < 5", Country.UK);
+            yield return TestCase($"Subdivisions HAS_ANY x => x.RandomDouble < 5", Country.UK);
+            yield return TestCase($"Subdivisions HAS_ANY x => x.RandomDecimal > 5", Country.US, Country.France);
+            yield return TestCase($"Subdivisions HAS_ANY x => x.RandomDouble > 5", Country.US, Country.France);
             yield return TestCase($"Words HAS_ANY x => x LIKE 'LEG%'", Country.UK, Country.US);
             yield return TestCase($"Words HAS_ANY x => x LIKE 'PA%'", Country.UK, Country.US);
             yield return TestCase($"Words HAS_SINGLE x => x LIKE 'RE%'", Country.France);

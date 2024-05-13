@@ -46,7 +46,7 @@ namespace SequelFilter.Tests
             var country = Country.UK;
 
             // Act
-            var result = ObjectFilter.Matches(country, $"Population = {country.Population}");
+            var result = ObjectFilter.Matches(country, $"Population.Int = {country.Population.Int}");
 
             // Assert
             result.Should().BeTrue();
