@@ -1,4 +1,6 @@
-﻿namespace SequelFilter.Tests
+﻿using System.Globalization;
+
+namespace SequelFilter.Tests
 {
     public class World
     {
@@ -25,7 +27,7 @@
         public Country(string countryName, int population, bool speaksEnglish, IEnumerable<string> words, IEnumerable<Subdivision> subdivisions)
         {
             CountryName = countryName;
-            Population = population;
+            Population = new Population(population);
             SpeaksEnglish = speaksEnglish;
             Words = words;
             Subdivisions = subdivisions;
@@ -33,7 +35,11 @@
 
         public string CountryName { get; }
 
-        public int Population { get; }
+        public Population Population { get; }
+
+        public decimal PopulationDecimal { get; }
+
+        public double PopulationDouble { get; }
 
         public bool SpeaksEnglish { get; }
 
@@ -44,16 +50,41 @@
         public IEnumerable<Subdivision> Subdivisions { get; }
     }
 
+    public class Population
+    {
+        public Population(int population)
+        {
+            Int = population;
+            Decimal = population + 0.02m;
+            Double = population + 0.02d;
+            String = Double.ToString(CultureInfo.InvariantCulture);
+        }
+
+        public int Int { get; }
+
+        public decimal Decimal { get; }
+
+        public double Double { get; }
+
+        public string String { get; }
+    }
+
     public class Subdivision
     {
         public Subdivision(string divisionName, int randomFactor)
         {
             DivisionName = divisionName;
             RandomFactor = randomFactor;
+            RandomDecimal = randomFactor + 0.02m;
+            RandomDouble = randomFactor + 0.02d;
         }
 
         public string DivisionName { get; }
 
         public int RandomFactor { get; }
+
+        public decimal RandomDecimal { get; }
+
+        public double RandomDouble { get; }
     }
 }
