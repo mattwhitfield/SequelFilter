@@ -5,7 +5,7 @@ Sequel Filter is a C# library that allows for filtering using a SQL-like syntax.
 
 ## Installation 💾
 
-Sequel Filter is available as a ![nuget package](https://www.nuget.org/packages/SequelFilter). You can also install the package using the .net CLI:
+Sequel Filter is available as a [nuget package](https://www.nuget.org/packages/SequelFilter). You can also install the package using the .net CLI:
 
 ```
 dotnet add package SequelFilter
