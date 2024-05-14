@@ -10,6 +10,7 @@
         public const string StringLiteral = "StringLiteral";
         public const string FieldReference = "FieldReference";
         public const string LiteralList = "LiteralList";
+        public const string FieldReferenceList = "FieldReferenceList";
 
         // expressions
         public const string BetweenExpression = "BetweenExpression";
@@ -98,6 +99,8 @@
             MakePlusRule(fieldReference, ToTerm(Dot), fieldReferenceElement);
             var literalList = new NonTerminal(LiteralList);
             MakePlusRule(literalList, ToTerm(Comma), literal);
+            var fieldReferenceList = new NonTerminal(FieldReferenceList);
+            MakePlusRule(fieldReferenceList, ToTerm(Comma), fieldReference);
 
             Root = expression;
 

@@ -42,6 +42,16 @@ There are a couple of built in `IFieldReferenceResolver` types. For the examples
 * MultiObjectResolver - for when you want a set of instances that represent the top-level named objects. `first` would be used to look up an object that was passed in to the constructor of `MutliObjectResolver` and `second` would be resolved as a property of that object.
 * ExtendedResolver - this is mostly for internal use, and allows you to introduce an extra named top-level object. This facilitates the `x => x.Property` style syntax of the enumerable language elements, such that each element of the enumerable can be resolved as `x` (or whatever identifier you choose) in the expression to the right of the 'goes into'.
 
+## Field selectors 👈
+
+Field selectors allow you to create a list of field selections - which enables things like selecting a set of fields for an export.
+
+```
+var selectors = SequelFilterParser.ParseSelectors("Property, OtherProperty");
+```
+
+The return type is `IList<FieldSelector>` - and each `FieldSelector` contains both the field name and a delegate for extracting the field value given an `IFieldReferenceResolver` instance.
+
 ## Exceptions 🤔
 
 In the main part, SequelFilter can throw two exception types:

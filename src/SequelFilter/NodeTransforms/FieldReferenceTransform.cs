@@ -16,5 +16,10 @@ namespace SequelFilter.NodeTransforms
                 return value is bool b && b;
             };
         }
+
+        public static FieldValueProvider Parse(ParseTreeNode treeNode)
+        {
+            return GetFieldValueProvider(treeNode);
+        }
     }
 }

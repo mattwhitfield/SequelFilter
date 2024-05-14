@@ -57,3 +57,7 @@ You can combine any of the individual language elements to create more complex f
 `Statistics.FieldOfDreams == 201 OR (Statistics.Population > 1000000 AND Statistics.Websites > 5000)`
 
 `Statistics.FieldOfDreams == 201 OR Statistics.Population > 1000000 OR Statistics.Websites > 5000`
+
+## Field selectors 👈
+
+Field selectors just use a comma separated list of field reference elements. The idea of this is to allow natural input to select a list of fields. An example would be `Statistics.Population, Statistics.Websites`. The field selectors would create a list of `FieldSelector` instances which contain the name of the field and a delegate to extract the value given an `IFieldReferenceResolver` instance.
