@@ -37,10 +37,6 @@ namespace SequelFilter.Tests
 
         public Population Population { get; }
 
-        public decimal PopulationDecimal { get; }
-
-        public double PopulationDouble { get; }
-
         public bool SpeaksEnglish { get; }
 
         public object? NullIfSpeaksEnglish => SpeaksEnglish ? null : new object();
