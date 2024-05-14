@@ -4,7 +4,16 @@ title: Home
 ![Latest release](https://img.shields.io/github/v/release/mattwhitfield/SequelFilter?color=00A000) ![Last commit](https://img.shields.io/github/last-commit/mattwhitfield/SequelFilter?color=00A000) ![Build status](https://img.shields.io/github/actions/workflow/status/mattwhitfield/SequelFilter/CI.yml?branch=main) ![Open issue count](https://img.shields.io/github/issues/mattwhitfield/SequelFilter)
 
 # Introduction 👀
+
 Sequel Filter is a C# library that allows for filtering using a SQL-like syntax. The idea is to be able to provide end-users with completely customizable filtering without having to allow them to provide their own code or write your own filtering logic.
+
+## Installation 💾
+
+Sequel Filter is available as a ![nuget package](https://www.nuget.org/packages/SequelFilter). You can also install the package using the .net CLI:
+
+```
+dotnet add package SequelFilter
+```
 
 ## Library Features 📚
 
