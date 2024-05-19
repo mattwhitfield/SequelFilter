@@ -4,6 +4,6 @@ namespace SequelFilter.Resolvers
 {
     public interface IFieldReferenceResolver
     {
-        object? Resolve(IList<string> names, int startIndex);
+        object? Resolve(IList<string> names, int startIndex, object? from = null);
     }
 }

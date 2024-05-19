@@ -14,19 +14,19 @@ namespace SequelFilter.Resolvers
 
             var currentValue = GetObjectValue(targetObject, names[startIndex]);
 
-            return ResolveFromValue(names, startIndex, currentValue);
+            return ResolveFromValue(names, startIndex + 1, currentValue);
         }
 
         internal static object? ResolveFromValue(IList<string> names, int startIndex, object? currentValue)
         {
             // if this is the last item, just return the current value
-            if (startIndex >= names.Count - 1)
+            if (startIndex >= names.Count)
             {
                 return currentValue;
             }
             else
             {
-                return Resolve(currentValue, names, startIndex + 1);
+                return Resolve(currentValue, names, startIndex);
             }
         }
 

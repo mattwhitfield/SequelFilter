@@ -16,7 +16,7 @@ namespace SequelFilter.Resolvers
             _fallbackResolver = fallbackResolver;
         }
 
-        public object? Resolve(IList<string> names, int startIndex)
+        public object? Resolve(IList<string> names, int startIndex, object? from = null)
         {
             var symbol = names[startIndex];
 
@@ -25,10 +25,10 @@ namespace SequelFilter.Resolvers
             {
                 var currentValue = _associatedValue;
 
-                return ObjectResolver.ResolveFromValue(names, startIndex, currentValue);
+                return _fallbackResolver.Resolve(names, startIndex + 1, currentValue);
             }
 
-            return _fallbackResolver.Resolve(names, startIndex);
+            return _fallbackResolver.Resolve(names, startIndex, from);
         }
     }
 }
