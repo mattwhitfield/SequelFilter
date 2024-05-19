@@ -11,9 +11,9 @@ namespace SequelFilter.Resolvers
             _targetObject = targetObject;
         }
 
-        public object? Resolve(IList<string> names, int startIndex)
+        public object? Resolve(IList<string> names, int startIndex, object? from = null)
         {
-            return ObjectResolver.Resolve(_targetObject, names, startIndex);
+            return ObjectResolver.Resolve(from ?? _targetObject, names, startIndex);
         }
     }
 }

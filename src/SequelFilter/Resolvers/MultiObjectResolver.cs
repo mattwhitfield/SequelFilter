@@ -12,7 +12,7 @@ namespace SequelFilter.Resolvers
             _targetObjects = new Dictionary<string, object>(targetObjects, StringComparer.OrdinalIgnoreCase);
         }
 
-        public object? Resolve(IList<string> names, int startIndex)
+        public object? Resolve(IList<string> names, int startIndex, object? from = null)
         {
             if (!_targetObjects.TryGetValue(names[startIndex], out var currentValue))
             {
