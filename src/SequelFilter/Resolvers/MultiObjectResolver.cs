@@ -16,6 +16,11 @@ namespace SequelFilter.Resolvers
         {
             if (!_targetObjects.TryGetValue(names[startIndex], out var currentValue))
             {
+                if (from != null)
+                {
+                    return ObjectResolver.ResolveFromValue(names, startIndex, from);
+                }
+
                 return null;
             }
 

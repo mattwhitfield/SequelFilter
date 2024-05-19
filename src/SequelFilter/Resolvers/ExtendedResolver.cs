@@ -25,7 +25,7 @@ namespace SequelFilter.Resolvers
             {
                 var currentValue = _associatedValue;
 
-                return _fallbackResolver.Resolve(names, startIndex, currentValue);
+                return _fallbackResolver.Resolve(names, startIndex + 1, currentValue);
             }
 
             return _fallbackResolver.Resolve(names, startIndex, from);
